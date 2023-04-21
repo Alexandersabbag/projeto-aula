@@ -1,0 +1,49 @@
+Flexible(
+            child: ListView(
+              scrollDirection: Axis.vertical,
+              padding: EdgeInsets.all(15),
+              children: [
+                Container(
+                  child: ListTile(
+                    leading: Icon(Icons.star),
+                    title: Text('Objeto 1'),
+                    subtitle: Text('Descrição do objeto 1'),
+                    trailing: Icon(Icons.arrow_forward),
+                    selected: true,
+                    onTap: () {
+                      // Faça algo quando o item for pressionado
+                    },
+                  ),
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: ListTile(
+                    leading: Icon(Icons.star),
+                    title: Text('Objeto 2'),
+                    subtitle: Text('Descrição do objeto 2'),
+                    trailing: Icon(Icons.arrow_forward),
+                    onTap: () {
+                      // Faça algo quando o item for pressionado
+                    },
+                  ),
+                ),
+                Container(
+                  child: ListTile(
+                    leading: Icon(Icons.star),
+                    title: Text('Objeto 3'),
+                    subtitle: Text('Descrição do objeto 3'),
+                    trailing: Icon(Icons.arrow_forward),
+                    onTap: () {
+                      // Faça algo quando o item for pressionado
+                    },
+                  ),
+                ),
+              ],
+            ),
+          )
