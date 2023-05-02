@@ -1,5 +1,6 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:projeto_aula/model/tarefas.dart';
 
 class TodoListView extends StatefulWidget {
@@ -30,6 +31,6 @@ class _TodoListViewState extends State<TodoListView> {
           centerTitle: true,
           backgroundColor: Color(0xFF6495ED),
         ),
-        body: Center());
+        body: ListView());
   }
 }

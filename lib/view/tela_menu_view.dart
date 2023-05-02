@@ -1,6 +1,7 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_import
 import 'package:flutter/material.dart';
 import 'package:projeto_aula/view/tela_sobre_view.dart';
+import 'package:projeto_aula/widgets/menuwid.dart';
 
 class MenuView extends StatefulWidget {
   const MenuView({super.key});
@@ -35,151 +36,16 @@ class _MenuViewState extends State<MenuView> {
           padding: EdgeInsets.all(50),
           crossAxisCount: 2,
           children: [
+            MenuWid(icone: Icons.person, texto: "Pessoas cadastradas"),
+            MenuWid(icone: Icons.list, texto: 'Lista de Tarefas'),
+            MenuWid(icone: Icons.error, texto: "Implementar"),
             GestureDetector(
-              onTap: () {
-                //Ir para a página Lista de Pessoas Cadastradas
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  border: Border.all(
-                    color: Color(0xFF6495ED),
-                    style: BorderStyle.solid,
-                    width: 2,
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Icon(
-                      Icons.person,
-                      size: 50,
-                      color: Color(0xFF6495ED),
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Text(
-                      'Pessoas Cadastradas',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                //Ir para a página Lista de Tarefas
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  border: Border.all(
-                    color: Color(0xFF6495ED),
-                    style: BorderStyle.solid,
-                    width: 2,
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Icon(
-                      Icons.list,
-                      size: 50,
-                      color: Color(0xFF6495ED),
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Text(
-                      'Lista de Tarefas',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                //ir para a página Sobre
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  border: Border.all(
-                    color: Color(0xFF6495ED),
-                    style: BorderStyle.solid,
-                    width: 2,
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Icon(
-                      Icons.amp_stories,
-                      size: 50,
-                      color: Color(0xFF6495ED),
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Text(
-                      'Sobre',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AboutView()));
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  border: Border.all(
-                    color: Color(0xFF6495ED),
-                    style: BorderStyle.solid,
-                    width: 2,
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Icon(
-                      Icons.error,
-                      size: 50,
-                      color: Color(0xFF6495ED),
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Text(
-                      'Criar funcionalidade',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
+                onTap: () => {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => AboutView()))
+                    },
+                child: MenuWid(
+                    icone: Icons.system_security_update, texto: "Sobre")),
           ],
         ),
       ),

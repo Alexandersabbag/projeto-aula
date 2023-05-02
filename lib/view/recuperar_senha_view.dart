@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, prefer_interpolation_to_compose_strings
 import 'package:flutter/material.dart';
+import 'package:projeto_aula/model/recuperar_senha.dart';
 
 class RecuperarSenhaView extends StatefulWidget {
   const RecuperarSenhaView({super.key});
@@ -58,6 +59,7 @@ class _RecuperarSenhaViewState extends State<RecuperarSenhaView> {
                       mensagem('Mensagem de recuperação enviado para o e-mail.',
                           Colors.blue.shade400);
                     }
+                    RecuperarSenha(txtRecEmail.text);
                   });
                 }, //criar iteração futuro
                 style: ElevatedButton.styleFrom(
