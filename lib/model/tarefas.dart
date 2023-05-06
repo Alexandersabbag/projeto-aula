@@ -1,6 +1,6 @@
-class TodoList {
-  final String tarefa;
-  final DateTime data;
+class Tarefas {
+  Tarefas({required this.titulo, required this.dateTime});
 
-  TodoList(this.tarefa, this.data);
+  String titulo;
+  DateTime dateTime;
 }
