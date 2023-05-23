@@ -2,6 +2,7 @@
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto_aula/controller/login_controller.dart';
 import 'package:projeto_aula/view/recuperar_senha_view.dart';
 import 'package:projeto_aula/view/tela_cadastro_view.dart';
 import 'package:projeto_aula/view/tela_menu_view.dart';
@@ -38,6 +39,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               LoginWidField(
                   icone: Icons.password, texto: txtSenha, lblTxt: "Senha"),
+              LoginController().login(context, txtEmail.text, txtSenha.text),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [

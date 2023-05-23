@@ -9,6 +9,10 @@ import 'package:projeto_aula/view/tela_sobre_view.dart';
 void main() {
   runApp(const MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: TodoListView(),
+    home: RecuperarSenhaView(),
   ));
 }
+
+//FAZER O LOGOUT (CRIAR INTERFACE DE LOGOUT)
+//ID DO USUÁRIO LOGADO 
+//NOME DO USUÁRIO LOGADO (CRIAR INTERFACE COM O NOME DO USUÁRIO LOGADO)

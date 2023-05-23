@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_aula/model/cadastrar.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import '../controller/login_controller.dart';
 
 class cadastrarView extends StatefulWidget {
   const cadastrarView({super.key});
@@ -13,18 +14,8 @@ class cadastrarView extends StatefulWidget {
 
 class _cadastrarViewState extends State<cadastrarView> {
   var txtCadNome = TextEditingController();
-  var txtCadcpf_cnpj = TextEditingController();
-  var txtCadEndereco = TextEditingController();
-  var txtCadCidade = TextEditingController();
-  var txtCadEstado = TextEditingController();
   var txtCadEmail = TextEditingController();
-  var txtCadData_nasc = TextEditingController();
-
-  var maskFormatter = new MaskTextInputFormatter(
-      mask: '##/##/####',
-      filter: {"#": RegExp(r'[0-9]')},
-      type: MaskAutoCompletionType.lazy);
-  int idCad = 0; //flag
+  var txtCadSenha = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -53,58 +44,6 @@ class _cadastrarViewState extends State<cadastrarView> {
             Container(
               margin: EdgeInsets.fromLTRB(90, 0, 90, 20),
               child: TextField(
-                controller: txtCadcpf_cnpj,
-                decoration: InputDecoration(
-                  labelText: 'insira cpf ou cnpj',
-                  labelStyle: TextStyle(fontSize: 25),
-                  suffixIcon: Icon(Icons.format_indent_increase),
-                  iconColor: Color(0xFF6495ED),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.fromLTRB(90, 0, 90, 20),
-              child: TextField(
-                controller: txtCadEndereco,
-                decoration: InputDecoration(
-                  labelText: 'Endereço',
-                  labelStyle: TextStyle(fontSize: 25),
-                  suffixIcon: Icon(Icons.add_location),
-                  iconColor: Color(0xFF6495ED),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.fromLTRB(90, 0, 90, 20),
-              child: TextField(
-                controller: txtCadCidade,
-                decoration: InputDecoration(
-                  labelText: 'Cidade',
-                  labelStyle: TextStyle(fontSize: 25),
-                  suffixIcon: Icon(Icons.location_city),
-                  iconColor: Color(0xFF6495ED),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.fromLTRB(90, 0, 90, 20),
-              child: TextField(
-                controller: txtCadEstado,
-                decoration: InputDecoration(
-                  labelText: 'Estado',
-                  labelStyle: TextStyle(fontSize: 25),
-                  suffixIcon: Icon(Icons.local_activity),
-                  iconColor: Color(0xFF6495ED),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.fromLTRB(90, 0, 90, 20),
-              child: TextField(
                 controller: txtCadEmail,
                 decoration: InputDecoration(
                   labelText: 'Email',
@@ -118,35 +57,24 @@ class _cadastrarViewState extends State<cadastrarView> {
             Container(
                 margin: EdgeInsets.fromLTRB(90, 0, 90, 20),
                 child: TextField(
-                  controller: txtCadData_nasc,
+                  controller: txtCadSenha,
                   decoration: InputDecoration(
-                    labelText: 'Data de Nascimento',
+                    labelText: 'Senha',
                     labelStyle: TextStyle(fontSize: 25),
                     suffixIcon: Icon(Icons.calendar_month),
                     iconColor: Color(0xFF6495ED),
                     border: OutlineInputBorder(),
                   ),
-                  inputFormatters: [maskFormatter],
                 )),
             ElevatedButton(
               onPressed: () {
-                Cadastro(
-                    txtCadNome.text,
-                    txtCadcpf_cnpj.text,
-                    txtCadEndereco.text,
-                    txtCadCidade.text,
-                    txtCadEstado.text,
-                    txtCadEmail.text,
-                    txtCadData_nasc.text,
-                    idCad);
+                Cadastro(txtCadNome.text, txtCadEmail.text, txtCadSenha.text);
+                LoginController().criarConta(
+                    context, txtCadNome.text, txtCadEmail.text, txtCadSenha);
                 setState(() {
-                  if (txtCadCidade.text.isEmpty ||
-                      txtCadData_nasc.text.isEmpty ||
-                      txtCadEmail.text.isEmpty ||
-                      txtCadEndereco.text.isEmpty ||
-                      txtCadEstado.text.isEmpty ||
+                  if (txtCadEmail.text.isEmpty ||
                       txtCadNome.text.isEmpty ||
-                      txtCadcpf_cnpj.text.isEmpty) {
+                      txtCadSenha.text.isEmpty) {
                     mensagem(
                       'Preencha todos os campos',
                       Colors.redAccent,
@@ -160,11 +88,12 @@ class _cadastrarViewState extends State<cadastrarView> {
                 });
               },
               style: ElevatedButton.styleFrom(
-                  textStyle: TextStyle(fontSize: 25),
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-                  backgroundColor: Color(0xFF6495ED),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5))),
+                textStyle: TextStyle(fontSize: 25),
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                backgroundColor: Color(0xFF6495ED),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+              ),
               child: Text('Salvar'),
             )
           ],
