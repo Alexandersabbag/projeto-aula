@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, sort_child_properties_last, unused_import
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_aula/controller/login_controller.dart';
@@ -21,6 +20,11 @@ class _LoginViewState extends State<LoginView> {
   var txtSenha = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -35,11 +39,16 @@ class _LoginViewState extends State<LoginView> {
               Padding(
                 padding: EdgeInsets.fromLTRB(0, 0, 0, 100),
                 child: LoginWidField(
-                    icone: Icons.mail, texto: txtEmail, lblTxt: "E-mail"),
+                  icone: Icons.mail,
+                  texto: txtEmail,
+                  lblTxt: "E-mail",
+                ),
               ),
               LoginWidField(
-                  icone: Icons.password, texto: txtSenha, lblTxt: "Senha"),
-              LoginController().login(context, txtEmail.text, txtSenha.text),
+                icone: Icons.password,
+                texto: txtSenha,
+                lblTxt: "Senha",
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -109,6 +118,8 @@ class _LoginViewState extends State<LoginView> {
                   padding: EdgeInsets.symmetric(vertical: 25, horizontal: 40),
                 ),
                 onPressed: () {
+                  LoginController()
+                      .login(context, txtEmail.text, txtSenha.text);
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => MenuView()));
                 },

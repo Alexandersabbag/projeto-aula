@@ -61,7 +61,7 @@ class _cadastrarViewState extends State<cadastrarView> {
                   decoration: InputDecoration(
                     labelText: 'Senha',
                     labelStyle: TextStyle(fontSize: 25),
-                    suffixIcon: Icon(Icons.calendar_month),
+                    suffixIcon: Icon(Icons.password),
                     iconColor: Color(0xFF6495ED),
                     border: OutlineInputBorder(),
                   ),

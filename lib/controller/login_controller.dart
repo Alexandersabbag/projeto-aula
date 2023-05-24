@@ -1,13 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto_aula/view/tela_login.dart';
+import 'package:projeto_aula/view/tela_menu_view.dart';
 
 class LoginController {
   criarConta(context, nome, email, senha) {
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: senha)
         .then((resultado) {
-      FirebaseFirestore.instance.collection('user').add({
+      FirebaseFirestore.instance.collection('users').add({
         'uid': resultado.user!.uid,
         'nome': nome,
       });
@@ -29,7 +31,9 @@ class LoginController {
         .signInWithEmailAndPassword(email: email, password: senha)
         .then((value) {
       //snackbar ou dialog de usuário logado com sucesso
-      Navigator.pushNamed(context, 'principal');
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MenuView()));
+      Navigator.pop(context, LoginView());
     }).catchError((e) {
       switch (e.code) {
         case 'user-not-found':

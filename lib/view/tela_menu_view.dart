@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_import
 import 'package:flutter/material.dart';
+import 'package:projeto_aula/controller/login_controller.dart';
 import 'package:projeto_aula/view/tela_sobre_view.dart';
 import 'package:projeto_aula/widgets/menuwid.dart';
 
@@ -26,6 +27,16 @@ class _MenuViewState extends State<MenuView> {
         title: Text('Menu Principal'),
         centerTitle: true,
         backgroundColor: Color(0xFF6495ED),
+        actions: [
+          TextButton.icon(
+            onPressed: () {
+              LoginController().logout();
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.exit_to_app),
+            label: Text("Usuário"),
+          )
+        ],
       ),
       body: Container(
         alignment: Alignment.center,
