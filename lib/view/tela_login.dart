@@ -120,8 +120,6 @@ class _LoginViewState extends State<LoginView> {
                 onPressed: () {
                   LoginController()
                       .login(context, txtEmail.text, txtSenha.text);
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MenuView()));
                 },
               )
             ],

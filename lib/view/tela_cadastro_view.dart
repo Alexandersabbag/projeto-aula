@@ -69,8 +69,8 @@ class _cadastrarViewState extends State<cadastrarView> {
             ElevatedButton(
               onPressed: () {
                 Cadastro(txtCadNome.text, txtCadEmail.text, txtCadSenha.text);
-                LoginController().criarConta(
-                    context, txtCadNome.text, txtCadEmail.text, txtCadSenha);
+                LoginController().criarConta(context, txtCadNome.text,
+                    txtCadEmail.text, txtCadSenha.text);
                 setState(() {
                   if (txtCadEmail.text.isEmpty ||
                       txtCadNome.text.isEmpty ||

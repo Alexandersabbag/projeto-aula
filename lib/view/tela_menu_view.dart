@@ -26,16 +26,35 @@ class _MenuViewState extends State<MenuView> {
         ),
         title: Text('Menu Principal'),
         centerTitle: true,
-        backgroundColor: Color(0xFF6495ED),
+        backgroundColor: Color(0xFFFFFFFF),
         actions: [
-          TextButton.icon(
+          FutureBuilder<String>(
+              future: LoginController().usuarioLogado(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: TextButton.icon(
+                      onPressed: () {
+                        LoginController().logout();
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(Icons.exit_to_app),
+                      label: Text(snapshot.data.toString()),
+                    ),
+                  );
+                }
+                return Text('');
+              })
+
+          /*TextButton.icon(
             onPressed: () {
               LoginController().logout();
               Navigator.pop(context);
             },
             icon: Icon(Icons.exit_to_app),
             label: Text("Usuário"),
-          )
+          )*/
         ],
       ),
       body: Container(

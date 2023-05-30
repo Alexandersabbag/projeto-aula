@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:projeto_aula/view/tela_login.dart';
 import 'package:projeto_aula/view/tela_menu_view.dart';
 
+import '../view/util.dart';
+
 class LoginController {
   criarConta(context, nome, email, senha) {
     FirebaseAuth.instance
@@ -30,17 +32,20 @@ class LoginController {
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: senha)
         .then((value) {
+      sucesso(context, 'Usuário autenticado com sucesso!');
       //snackbar ou dialog de usuário logado com sucesso
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => MenuView()));
-      Navigator.pop(context, LoginView());
+      //Navigator.pop(context);
     }).catchError((e) {
       switch (e.code) {
         case 'user-not-found':
           //usuário não criado
+          erro(context, 'Usuário não encontrado.');
           break;
         default:
-        //outro erro qualquer
+          //outro erro qualquer
+          erro(context, 'ERRO: ${e.code.toString()}');
       }
     });
   }
@@ -65,7 +70,7 @@ class LoginController {
   Future<String> usuarioLogado() async {
     var usuario = '';
     await FirebaseFirestore.instance
-        .collection('usuarios')
+        .collection('users')
         .where('uid', isEqualTo: idUsuario())
         .get()
         .then(
