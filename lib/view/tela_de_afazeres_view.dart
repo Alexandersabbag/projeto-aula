@@ -43,7 +43,7 @@ class _TodoListViewState extends State<TodoListView> {
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: "Adicione uma tarefa",
-                      hintText: "Comprar pão amanhã às 6"),
+                      hintText: "Comprar pão"),
                 ),
               ),
               SizedBox(width: 7),
@@ -53,8 +53,8 @@ class _TodoListViewState extends State<TodoListView> {
                     onPressed: () {
                       String texto = txtTarefa.text;
                       setState(() {
-                        Tarefas newTarefa =
-                            Tarefas(titulo: texto, dateTime: DateTime.now());
+                        Tarefas newTarefa = Tarefas(
+                            tarefa: texto, dateTime: DateTime.now(), uid: '');
                         anotacoes.add(newTarefa);
                       });
                       txtTarefa.clear();
@@ -75,7 +75,7 @@ class _TodoListViewState extends State<TodoListView> {
               child: ListView(
                 children: [
                   for (Tarefas anotacao in anotacoes)
-                    novaTarefa(titulo: anotacao.titulo),
+                    novaTarefa(titulo: anotacao.tarefa),
                 ],
               ),
             ),

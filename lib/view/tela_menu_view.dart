@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, prefer_const_constructors, unused_import
 import 'package:flutter/material.dart';
 import 'package:projeto_aula/controller/login_controller.dart';
+import 'package:projeto_aula/view/tela_de_afazeres_view.dart';
 import 'package:projeto_aula/view/tela_sobre_view.dart';
 import 'package:projeto_aula/widgets/menuwid.dart';
 
@@ -16,17 +17,10 @@ class _MenuViewState extends State<MenuView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Future.delayed(Duration.zero, () {
-              Navigator.pop(context);
-            });
-          },
-        ),
+        automaticallyImplyLeading: false,
         title: Text('Menu Principal'),
         centerTitle: true,
-        backgroundColor: Color(0xFFFFFFFF),
+        backgroundColor: Color(0xFF6495ED),
         actions: [
           FutureBuilder<String>(
               future: LoginController().usuarioLogado(),
@@ -39,22 +33,14 @@ class _MenuViewState extends State<MenuView> {
                         LoginController().logout();
                         Navigator.pop(context);
                       },
-                      icon: Icon(Icons.exit_to_app),
-                      label: Text(snapshot.data.toString()),
+                      icon: Icon(Icons.exit_to_app, color: Color(0xFFFFFFFF)),
+                      label: Text(snapshot.data.toString(),
+                          style: TextStyle(color: Color(0xFFFFFFFF))),
                     ),
                   );
                 }
                 return Text('');
               })
-
-          /*TextButton.icon(
-            onPressed: () {
-              LoginController().logout();
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.exit_to_app),
-            label: Text("Usuário"),
-          )*/
         ],
       ),
       body: Container(
@@ -66,16 +52,27 @@ class _MenuViewState extends State<MenuView> {
           padding: EdgeInsets.all(50),
           crossAxisCount: 2,
           children: [
-            MenuWid(icone: Icons.person, texto: "Pessoas cadastradas"),
-            MenuWid(icone: Icons.list, texto: 'Lista de Tarefas'),
-            MenuWid(icone: Icons.error, texto: "Implementar"),
-            GestureDetector(
-                onTap: () => {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => AboutView()))
-                    },
-                child: MenuWid(
-                    icone: Icons.system_security_update, texto: "Sobre")),
+            MenuWid(
+                icone: Icons.person,
+                texto: "Pessoas cadastradas",
+                onPressed: () {}),
+            MenuWid(
+              icone: Icons.list,
+              texto: 'Lista de Tarefas',
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => TodoListView()));
+              },
+            ),
+            MenuWid(icone: Icons.error, texto: "Implementar", onPressed: () {}),
+            MenuWid(
+              icone: Icons.system_security_update,
+              texto: "Sobre",
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AboutView()));
+              },
+            ),
           ],
         ),
       ),
